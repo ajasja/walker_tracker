@@ -1,8 +1,6 @@
 # %%
-import numpy as np
 import subprocess
 import lumicks.pylake as lk
-from skimage.transform import rescale
 import os
 from pathlib import Path
 import argparse
@@ -28,9 +26,24 @@ parser.add_argument(
     help="Path to fiji executable. Default='C:/Program Files/Fiji.app/ImageJ-win64.exe'",
 )
 
+parser.add_argument(
+    "-c",
+    "--reference-channel",
+    default="C3",
+    help="Reference channel. C1=red C2=green C3=blue. Default=C3",
+)
+
 parser.add_argument("--keep_uncorrected_movie")
 
 args = parser.parse_args()
+
+channels = ["C1", "C2", "C3"]
+
+if args.reference_channel not in channels:
+    raise ValueError("Incorrect value for channel")
+else:
+    reference_channel = args.reference_channel
+
 
 movie_path = args.movie_file
 output_path = (
@@ -55,42 +68,37 @@ movie.export_tiff(aligned_movie_path)  # Save aligned wt stack
 correct_drift = True
 current_dir = os.getcwd()
 current_dir = current_dir.replace("\\", "/")
+macro_path = "{}/{}_temp_macro.ijm".format(output_path, Path(movie_path).stem)
 
-with open("temp_macro.ijm", "w") as f:
+with open(macro_path, "w") as f:
     f.write('open("{}/{}");\n'.format(current_dir, aligned_movie_path))
     f.write('run("Split Channels");\n')
-    f.write(('selectImage("C3-{}");\n').format(aligned_movie_filename))
+    f.write(
+        ('selectImage("{}-{}");\n').format(reference_channel, aligned_movie_filename)
+    )
     f.write(
         (
-            'run("F4DR Estimate Drift","time=100 max=10 reference=[first frame (default, better for fixed)] apply choose=[{}/{}output.njt]");\n'
-        ).format(current_dir, output_path),
+            'run("F4DR Estimate Drift","time=100 max=10 reference=[first frame (default, better for fixed)] apply choose=[{}/{}_.njt]");\n'
+        ).format(current_dir, aligned_movie_path),
     )
     if correct_drift:
-        f.write(('selectImage("C2-{}");\n').format(aligned_movie_filename))
-        f.write(
-            (
-                'run("F4DR Correct Drift", "choose=[{}/{}outputDriftTable.njt]");\n'
-            ).format(current_dir, output_path)
-        )
-        f.write(('selectImage("C1-{}");\n').format(aligned_movie_filename))
-        f.write(
-            (
-                'run("F4DR Correct Drift", "choose=[{}/{}outputDriftTable.njt]");\n'
-            ).format(current_dir, output_path)
-        )
-        f.write(('selectImage("C3-{}");\n').format(aligned_movie_filename))
-        f.write(
-            "close();\n",
-        )
-        f.write(('selectImage("C2-{}");\n').format(aligned_movie_filename))
-        f.write(
-            "close();\n",
-        )
-        f.write(('selectImage("C1-{}");\n').format(aligned_movie_filename))
-        f.write(
-            "close();\n",
-        )
-        f.write(
+        for channel in channels:
+            if channel != reference_channel:
+                f.write(
+                    ('selectImage("{}-{}");\n').format(channel, aligned_movie_filename)
+                )
+                f.write(
+                    (
+                        'run("F4DR Correct Drift", "choose=[{}/{}_DriftTable.njt]");\n'
+                    ).format(current_dir, aligned_movie_path)
+                )
+        for channel in channels:
+            f.write(('selectImage("{}-{}");\n').format(channel, aligned_movie_filename))
+            f.write(
+                "close();\n",
+            )
+
+        f.write(  # This one can also be written as a loop if we expect to have more than the RGB channels.
             (
                 'run("Merge Channels...", "c1=[C1-{} - drift corrected] c2=[C2-{} - drift corrected] c3=[C3-{} - drift corrected] create");\n'
             ).format(
@@ -106,8 +114,8 @@ with open("temp_macro.ijm", "w") as f:
 
 # %%
 path_to_fiji = args.path_to_fiji  # How to find automatically?
-run_string = '{} -macro "temp_macro.ijm"'.format(path_to_fiji)
-
+run_string = '{} -macro "{}"'.format(path_to_fiji, macro_path)
+print(run_string)
 # I think the drift correction plugin isn't happy with runnig headless
 # run_string = '{} --headless --console -macro "temp_macro.ijm"'.format(path_to_fiji)
 print("Begin fiji processing")
@@ -115,7 +123,7 @@ subprocess.run(run_string)
 print("Finished fiji processing")
 
 # %%
-os.remove("{}/outputDriftTable.njt".format(output_path))
-os.remove("temp_macro.ijm")
+os.remove("{}/{}_DriftTable.njt".format(current_dir, aligned_movie_path))
+os.remove(macro_path)
 if not args.keep_uncorrected_movie:
     os.remove("{}".format(aligned_movie_path))
