@@ -28,6 +28,35 @@ def take_only_walkers_on_fibre(fibre, walker):
 
     return take
 
+def take_only_walkers_on_fibre_trajectory(in_file, out_file=None):
+    """Takes an input file or a stack in the form of TYXC and saves it to out file. Writes the shape of TYX"""  # I changed this to TYXC. My input has a different shape
+
+    if isinstance(in_file, str):
+        # Could also be a path object, but that would now fail. pethaps change to file exists, or test if in_file is an array
+        stack = skio.imread(in_file)
+    else:
+        stack = in_file
+
+    dims = stack.shape
+    print(dims)
+    # skip the channel?
+    new_dims = (dims[0], dims[1], dims[2])
+    out = np.zeros(new_dims, dtype=np.uint8)
+    for i in range(dims[0]):
+        frame_fibre = stack[i, :, :, 2]
+        frame_walker = stack[i, :, :, 0]
+        new = take_only_walkers_on_fibre(frame_fibre, frame_walker)
+        out[i] = new
+
+    tifffile.imwrite(
+        out_file,
+        out,
+        ome=True,
+        dtype=np.uint8,
+        photometric="minisblack",
+        metadata={"axes": "TYX"},
+    )
+
 #taken from https://forum.image.sc/t/background-subtraction-in-scikit-image/39118/4
 def substract_background(image, radius=50, light_bg=False):
         from skimage.morphology import white_tophat, black_tophat
