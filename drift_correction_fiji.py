@@ -1,11 +1,10 @@
-# %%
+
 import subprocess
 import lumicks.pylake as lk
 import os
 from pathlib import Path
 import argparse
 
-# %%
 
 parser = argparse.ArgumentParser(
     description="""Script to drift-correct movies.""",
@@ -33,7 +32,11 @@ parser.add_argument(
     help="Reference channel. C1=red C2=green C3=blue. Default=C3",
 )
 
-parser.add_argument("--keep_uncorrected_movie")
+parser.add_argument("--keep-uncorrected-movie",
+                    help="Keep intermediate aligned file",  action='store_true')
+
+parser.add_argument("-d", "--dry-run",
+                    help="Only produce the fiji script file",  action='store_true')
 
 args = parser.parse_args()
 
@@ -50,20 +53,20 @@ output_path = (
     args.output_directory + "/"
 )  # The trailing slash is in case it wasn't added by the user
 
-# %%
+
 os.makedirs(output_path, exist_ok=True)
 
-# %%
+
 movie_filename = os.path.basename(movie_path)
 
-# %%
 movie = lk.ImageStack(movie_path)  # Loading a stack.
 aligned_movie_path = output_path + Path(movie_path).stem + "_aligned.tiff"
 aligned_movie_filename = Path(movie_path).stem + "_aligned.tiff"
-movie.export_tiff(aligned_movie_path)  # Save aligned wt stack
+if not args.dry_run:
+    movie.export_tiff(aligned_movie_path)  # Save aligned wt stack
 
 
-# %%
+
 # Write Fiji macro to file
 correct_drift = True
 current_dir = os.getcwd()
@@ -112,12 +115,16 @@ with open(macro_path, "w") as f:
         )
         f.write('run("Quit");')
 
-# %%
+
 path_to_fiji = args.path_to_fiji  # How to find automatically?
 run_string = '{} -macro "{}"'.format(path_to_fiji, macro_path)
 print(run_string)
 # I think the drift correction plugin isn't happy with runnig headless
 # run_string = '{} --headless --console -macro "temp_macro.ijm"'.format(path_to_fiji)
+
+if args.dry_run:
+    exit()
+
 print("Begin fiji processing")
 subprocess.run(run_string)
 print("Finished fiji processing")
