@@ -49,9 +49,8 @@ else:
 
 
 movie_path = args.movie_file
-output_path = (
-    args.output_directory + "/"
-)  # The trailing slash is in case it wasn't added by the user
+output_path = Path(args.output_directory)
+
 
 
 os.makedirs(output_path, exist_ok=True)
@@ -60,41 +59,32 @@ os.makedirs(output_path, exist_ok=True)
 movie_filename = os.path.basename(movie_path)
 
 movie = lk.ImageStack(movie_path)  # Loading a stack.
-aligned_movie_path = output_path + Path(movie_path).stem + "_aligned.tiff"
 aligned_movie_filename = Path(movie_path).stem + "_aligned.tiff"
+aligned_movie_pathname = output_path / aligned_movie_filename
+aligned_movie_pathname = aligned_movie_pathname.resolve()
+
 if not args.dry_run:
-    movie.export_tiff(aligned_movie_path)  # Save aligned wt stack
+    movie.export_tiff(aligned_movie_pathname)  # Save aligned wt stack
 
 
 
 # Write Fiji macro to file
 correct_drift = True
-current_dir = os.getcwd()
-current_dir = current_dir.replace("\\", "/")
-macro_path = "{}/{}_temp_macro.ijm".format(output_path, Path(movie_path).stem)
 
+drift_table = aligned_movie_pathname.with_suffix('njt')
+
+macro_path = f"{output_path / Path(movie_path).stem}_temp_macro.ijm"
 with open(macro_path, "w") as f:
-    f.write('open("{}/{}");\n'.format(current_dir, aligned_movie_path))
+    f.write(f'open("{aligned_movie_pathname}");\n')
     f.write('run("Split Channels");\n')
-    f.write(
-        ('selectImage("{}-{}");\n').format(reference_channel, aligned_movie_filename)
-    )
-    f.write(
-        (
-            'run("F4DR Estimate Drift","time=100 max=10 reference=[first frame (default, better for fixed)] apply choose=[{}/{}_.njt]");\n'
-        ).format(current_dir, aligned_movie_path),
-    )
+    f.write(f'selectImage("{reference_channel}-{aligned_movie_filename}");')
+
+    f.write(f'run("F4DR Estimate Drift","time=100 max=10 reference=[first frame (default, better for fixed)] apply choose=[{aligned_movie_pathname}_DriftTable.njt]");\n')
     if correct_drift:
         for channel in channels:
             if channel != reference_channel:
-                f.write(
-                    ('selectImage("{}-{}");\n').format(channel, aligned_movie_filename)
-                )
-                f.write(
-                    (
-                        'run("F4DR Correct Drift", "choose=[{}/{}_DriftTable.njt]");\n'
-                    ).format(current_dir, aligned_movie_path)
-                )
+                f.write(f'selectImage("{channel}-{aligned_movie_filename}");\n')
+                f.write(f'run("F4DR Correct Drift", "choose=[{drift_table}]");\n')
         for channel in channels:
             f.write(('selectImage("{}-{}");\n').format(channel, aligned_movie_filename))
             f.write(
@@ -110,7 +100,7 @@ with open(macro_path, "w") as f:
         )
         f.write(
             ('saveAs("Tiff", "{}/{}_drift_corrected.tif");\n').format(
-                current_dir, aligned_movie_path.replace(".tiff", "").replace(".tif", "")
+                current_dir, aligned_movie_pathname.replace(".tiff", "").replace(".tif", "")
             )
         )
         f.write('run("Quit");')
@@ -129,8 +119,8 @@ print("Begin fiji processing")
 subprocess.run(run_string)
 print("Finished fiji processing")
 
-# %%
-os.remove("{}/{}_DriftTable.njt".format(current_dir, aligned_movie_path))
-os.remove(macro_path)
+
+#os.remove(drift_table)
+#os.remove(macro_path)
 if not args.keep_uncorrected_movie:
-    os.remove("{}".format(aligned_movie_path))
+    os.remove(aligned_movie_pathname)
