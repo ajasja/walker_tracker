@@ -72,9 +72,14 @@ if not args.dry_run:
 correct_drift = True
 
 drift_table = aligned_movie_pathname.with_suffix('.njt')
-
 macro_path = f"{output_path / Path(movie_path).stem}_temp_macro.ijm"
-with open(macro_path, "w") as f:
+
+#Fiji does not handle a single \ well
+aligned_movie_pathname = str(aligned_movie_pathname).replace('\\','/')
+macro_path = str(macro_path).replace('\\','/')
+drift_table = str(drift_table).replace('\\','/')
+
+with open(macro_path, "w", encoding='utf8') as f:
     f.write(f'open("{aligned_movie_pathname}");\n')
     f.write('run("Split Channels");\n')
     f.write(f'selectImage("{reference_channel}-{aligned_movie_filename}");')
@@ -91,7 +96,7 @@ with open(macro_path, "w") as f:
 
         # This one can also be written as a loop if we expect to have more than the RGB channels
         f.write(f'run("Merge Channels...", "c1=[C1-{aligned_movie_filename} - drift corrected] c2=[C2-{aligned_movie_filename} - drift corrected] c3=[C3-{aligned_movie_filename} - drift corrected] create");\n')
-        f.write(f'saveAs("Tiff", "aligned_movie_pathname.replace(".tiff", "").replace(".tif", "")_drift_corrected.tif");\n')
+        f.write(f'saveAs("Tiff", "{aligned_movie_pathname.replace(".tiff", "").replace(".tif", "")}_drift_corrected.tif");\n')
         f.write(f'run("Quit");')
 
 
