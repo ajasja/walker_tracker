@@ -71,7 +71,7 @@ if not args.dry_run:
 # Write Fiji macro to file
 correct_drift = True
 
-drift_table = aligned_movie_pathname.with_suffix('njt')
+drift_table = aligned_movie_pathname.with_suffix('.njt')
 
 macro_path = f"{output_path / Path(movie_path).stem}_temp_macro.ijm"
 with open(macro_path, "w") as f:
@@ -86,24 +86,13 @@ with open(macro_path, "w") as f:
                 f.write(f'selectImage("{channel}-{aligned_movie_filename}");\n')
                 f.write(f'run("F4DR Correct Drift", "choose=[{drift_table}]");\n')
         for channel in channels:
-            f.write(('selectImage("{}-{}");\n').format(channel, aligned_movie_filename))
-            f.write(
-                "close();\n",
-            )
+            f.write(f'selectImage("{channel}-{aligned_movie_filename}");\n')
+            f.write("close();\n")
 
-        f.write(  # This one can also be written as a loop if we expect to have more than the RGB channels.
-            (
-                'run("Merge Channels...", "c1=[C1-{} - drift corrected] c2=[C2-{} - drift corrected] c3=[C3-{} - drift corrected] create");\n'
-            ).format(
-                aligned_movie_filename, aligned_movie_filename, aligned_movie_filename
-            ),
-        )
-        f.write(
-            ('saveAs("Tiff", "{}/{}_drift_corrected.tif");\n').format(
-                current_dir, aligned_movie_pathname.replace(".tiff", "").replace(".tif", "")
-            )
-        )
-        f.write('run("Quit");')
+        # This one can also be written as a loop if we expect to have more than the RGB channels
+        f.write(f'run("Merge Channels...", "c1=[C1-{aligned_movie_filename} - drift corrected] c2=[C2-{aligned_movie_filename} - drift corrected] c3=[C3-{aligned_movie_filename} - drift corrected] create");\n')
+        f.write(f'saveAs("Tiff", "aligned_movie_pathname.replace(".tiff", "").replace(".tif", "")_drift_corrected.tif");\n')
+        f.write(f'run("Quit");')
 
 
 path_to_fiji = args.path_to_fiji  # How to find automatically?
