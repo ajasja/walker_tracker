@@ -20,8 +20,8 @@ parser.add_argument(
 parser.add_argument(
     "-f",
     "--path-to-fiji",
-    default="C:/Program Files/Fiji.app/ImageJ-win64.exe",
-    help="Path to fiji executable. Default='C:/Program Files/Fiji.app/ImageJ-win64.exe'",
+    default="C:/Program Files (x86)/Fiji.app/ImageJ-win64.exe",
+    help="Path to fiji executable. Default='C:/Program Files (x86)/Fiji.app/ImageJ-win64.exe'",
 )
 
 parser.add_argument(
