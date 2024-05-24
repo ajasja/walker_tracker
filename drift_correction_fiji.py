@@ -1,4 +1,3 @@
-
 import subprocess
 import lumicks.pylake as lk
 import os
@@ -32,11 +31,15 @@ parser.add_argument(
     help="Reference channel. C1=red C2=green C3=blue. Default=C3",
 )
 
-parser.add_argument("--keep-uncorrected-movie",
-                    help="Keep intermediate aligned file",  action='store_true')
+parser.add_argument(
+    "--keep-uncorrected-movie",
+    help="Keep intermediate aligned file",
+    action="store_true",
+)
 
-parser.add_argument("-d", "--dry-run",
-                    help="Only produce the fiji script file",  action='store_true')
+parser.add_argument(
+    "-d", "--dry-run", help="Only produce the fiji script file", action="store_true"
+)
 
 args = parser.parse_args()
 
@@ -50,7 +53,6 @@ else:
 
 movie_path = args.movie_file
 output_path = Path(args.output_directory)
-
 
 
 os.makedirs(output_path, exist_ok=True)
@@ -67,24 +69,25 @@ if not args.dry_run:
     movie.export_tiff(aligned_movie_pathname)  # Save aligned wt stack
 
 
-
 # Write Fiji macro to file
 correct_drift = True
 
-drift_table = aligned_movie_pathname.with_suffix('.njt')
+drift_table = f"{aligned_movie_pathname}DriftTable.njt"
 macro_path = f"{output_path / Path(movie_path).stem}_temp_macro.ijm"
 
-#Fiji does not handle a single \ well
-aligned_movie_pathname = str(aligned_movie_pathname).replace('\\','/')
-macro_path = str(macro_path).replace('\\','/')
-drift_table = str(drift_table).replace('\\','/')
+# Fiji does not handle a single \ well
+aligned_movie_pathname = str(aligned_movie_pathname).replace("\\", "/")
+macro_path = str(macro_path).replace("\\", "/")
+drift_table = str(drift_table).replace("\\", "/")
 
-with open(macro_path, "w", encoding='utf8') as f:
+with open(macro_path, "w", encoding="utf8") as f:
     f.write(f'open("{aligned_movie_pathname}");\n')
     f.write('run("Split Channels");\n')
     f.write(f'selectImage("{reference_channel}-{aligned_movie_filename}");')
 
-    f.write(f'run("F4DR Estimate Drift","time=100 max=10 reference=[first frame (default, better for fixed)] apply choose=[{aligned_movie_pathname}_DriftTable.njt]");\n')
+    f.write(
+        f'run("F4DR Estimate Drift","time=100 max=10 reference=[first frame (default, better for fixed)] apply choose=[{aligned_movie_pathname}]");\n'
+    )
     if correct_drift:
         for channel in channels:
             if channel != reference_channel:
@@ -95,8 +98,12 @@ with open(macro_path, "w", encoding='utf8') as f:
             f.write("close();\n")
 
         # This one can also be written as a loop if we expect to have more than the RGB channels
-        f.write(f'run("Merge Channels...", "c1=[C1-{aligned_movie_filename} - drift corrected] c2=[C2-{aligned_movie_filename} - drift corrected] c3=[C3-{aligned_movie_filename} - drift corrected] create");\n')
-        f.write(f'saveAs("Tiff", "{aligned_movie_pathname.replace(".tiff", "").replace(".tif", "")}_drift_corrected.tif");\n')
+        f.write(
+            f'run("Merge Channels...", "c1=[C1-{aligned_movie_filename} - drift corrected] c2=[C2-{aligned_movie_filename} - drift corrected] c3=[C3-{aligned_movie_filename} - drift corrected] create");\n'
+        )
+        f.write(
+            f'saveAs("Tiff", "{aligned_movie_pathname.replace(".tiff", "").replace(".tif", "")}_drift_corrected.tif");\n'
+        )
         f.write(f'run("Quit");')
 
 
@@ -114,7 +121,7 @@ subprocess.run(run_string)
 print("Finished fiji processing")
 
 
-#os.remove(drift_table)
-#os.remove(macro_path)
+# os.remove(drift_table)
+# os.remove(macro_path)
 if not args.keep_uncorrected_movie:
     os.remove(aligned_movie_pathname)
