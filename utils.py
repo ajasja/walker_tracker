@@ -28,6 +28,35 @@ def take_only_walkers_on_fibre(fibre, walker):
 
     return take
 
+def take_only_walkers_on_fibre_trajectory(in_file, out_file=None):
+    """Takes an input file or a stack in the form of TYXC and saves it to out file. Writes the shape of TYX"""  # I changed this to TYXC. My input has a different shape
+
+    if isinstance(in_file, str):
+        # Could also be a path object, but that would now fail. pethaps change to file exists, or test if in_file is an array
+        stack = skio.imread(in_file)
+    else:
+        stack = in_file
+
+    dims = stack.shape
+    print(dims)
+    # skip the channel?
+    new_dims = (dims[0], dims[1], dims[2])
+    out = np.zeros(new_dims, dtype=np.uint8)
+    for i in range(dims[0]):
+        frame_fibre = stack[i, :, :, 2]
+        frame_walker = stack[i, :, :, 0]
+        new = take_only_walkers_on_fibre(frame_fibre, frame_walker)
+        out[i] = new
+
+    tifffile.imwrite(
+        out_file,
+        out,
+        ome=True,
+        dtype=np.uint8,
+        photometric="minisblack",
+        metadata={"axes": "TYX"},
+    )
+
 #taken from https://forum.image.sc/t/background-subtraction-in-scikit-image/39118/4
 def substract_background(image, radius=50, light_bg=False):
         from skimage.morphology import white_tophat, black_tophat
@@ -127,3 +156,69 @@ def rand_cmap(nlabels, type='bright', first_color_black=True, last_color_black=F
                                    boundaries=bounds, format='%1i', orientation=u'horizontal')
 
     return random_colormap
+
+#This is taken from scipy 1.13
+def fit_2d_normal(self, x, fix_mean=None, fix_cov=None):
+    """Fit a multivariate normal distribution to data.
+
+    Parameters
+    ----------
+    x : ndarray (m, n)
+        Data the distribution is fitted to. Must have two axes.
+        The first axis of length `m` represents the number of vectors
+        the distribution is fitted to. The second axis of length `n`
+        determines the dimensionality of the fitted distribution.
+    fix_mean : ndarray(n, )
+        Fixed mean vector. Must have length `n`.
+    fix_cov: ndarray (n, n)
+        Fixed covariance matrix. Must have shape `(n, n)`.
+
+    Returns
+    -------
+    mean : ndarray (n, )
+        Maximum likelihood estimate of the mean vector
+    cov : ndarray (n, n)
+        Maximum likelihood estimate of the covariance matrix
+
+    """
+    # input validation for data to be fitted
+    x = np.asarray(x)
+    if x.ndim != 2:
+        raise ValueError("`x` must be two-dimensional.")
+
+    n_vectors, dim = x.shape
+
+    # parameter estimation
+    # reference: https://home.ttic.edu/~shubhendu/Slides/Estimation.pdf
+    if fix_mean is not None:
+        # input validation for `fix_mean`
+        fix_mean = np.atleast_1d(fix_mean)
+        if fix_mean.shape != (dim, ):
+            msg = ("`fix_mean` must be a one-dimensional array the same "
+                    "length as the dimensionality of the vectors `x`.")
+            raise ValueError(msg)
+        mean = fix_mean
+    else:
+        mean = x.mean(axis=0)
+
+    if fix_cov is not None:
+        # input validation for `fix_cov`
+        fix_cov = np.atleast_2d(fix_cov)
+        # validate shape
+        if fix_cov.shape != (dim, dim):
+            msg = ("`fix_cov` must be a two-dimensional square array "
+                    "of same side length as the dimensionality of the "
+                    "vectors `x`.")
+            raise ValueError(msg)
+        # validate positive semidefiniteness
+        # a trimmed down copy from _PSD
+        s, u = scipy.linalg.eigh(fix_cov, lower=True, check_finite=True)
+        eps = _eigvalsh_to_eps(s)
+        if np.min(s) < -eps:
+            msg = "`fix_cov` must be symmetric positive semidefinite."
+            raise ValueError(msg)
+        cov = fix_cov
+    else:
+        centered_data = x - mean
+        cov = centered_data.T @ centered_data / n_vectors
+    return mean, cov
