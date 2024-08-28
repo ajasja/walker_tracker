@@ -11,6 +11,7 @@ def take_only_walkers_on_fibre(fibre, walker):
     """Take only the part of the walker chanel that is close to the fibres"""
     fibre = substract_background(fibre, radius=100)
     fibre = skimage.exposure.rescale_intensity(fibre, in_range='image', out_range='uint8')
+    #fibre = skimage.exposure.rescale_intensity(fibre, in_range='image', out_range='uint8')
     
     thresh = skimage.filters.threshold_otsu(fibre)
     binary = fibre > thresh
@@ -24,7 +25,8 @@ def take_only_walkers_on_fibre(fibre, walker):
     #plt.show()
     walker = substract_background(walker, radius=20)
     take = walker*binary
-    take = skimage.exposure.rescale_intensity(take, in_range='image', out_range='uint8')
+    #print('new version')
+    #take = skimage.exposure.rescale_intensity(take, in_range='image', out_range='uint8')
 
     return take
 
@@ -41,7 +43,7 @@ def take_only_walkers_on_fibre_trajectory(in_file, out_file=None):
     print(dims)
     # skip the channel?
     new_dims = (dims[0], dims[1], dims[2])
-    out = np.zeros(new_dims, dtype=np.uint8)
+    out = np.zeros(new_dims, dtype=np.uint16)
     for i in range(dims[0]):
         frame_fibre = stack[i, :, :, 2]
         frame_walker = stack[i, :, :, 0]
@@ -52,7 +54,7 @@ def take_only_walkers_on_fibre_trajectory(in_file, out_file=None):
         out_file,
         out,
         ome=True,
-        dtype=np.uint8,
+        dtype=np.uint16,
         photometric="minisblack",
         metadata={"axes": "TYX"},
     )
@@ -77,10 +79,10 @@ def get_steps_from_df(df):
     #print(df.frame.values)
     return pd.DataFrame(dict(dframe=dframe, dx=dx, dy=dy))
 
-def get_diff_from_steps(steps_df, dim=1, dt=1, step_to_length=1):
+'''def get_diff_from_steps(steps_df, dim=1, dt=1, step_to_length=1):
     """Data frame must have dx and dy field. 
       Returns diffusion coefficient, optionally scaled by dimension (1, 2, 3), time units and length units (step_to_length)"""
-    return np.mean(steps_df.dx**2+steps_df.dy**2)/(2*dim*dt)*step_to_length*step_to_length
+    return np.mean(steps_df.dx**2+steps_df.dy**2)/(2*dim*dt)*step_to_length*step_to_length'''
 
 def write_yaml(data, filename):
     import yaml
