@@ -9,7 +9,8 @@ import numpy as np
 
 def take_only_walkers_on_fibre(fibre, walker):
     """Take only the part of the walker chanel that is close to the fibres"""
-    fibre = substract_background(fibre, radius=100)
+    print(f"substracting background for fibre")
+    fibre = substract_background(fibre, radius=50, light_bg=True)
     fibre = skimage.exposure.rescale_intensity(fibre, in_range='image', out_range='uint8')
     #fibre = skimage.exposure.rescale_intensity(fibre, in_range='image', out_range='uint8')
     
@@ -23,6 +24,7 @@ def take_only_walkers_on_fibre(fibre, walker):
     binary=skimage.filters.gaussian(binary)
     #plt.imshow(binary)
     #plt.show()
+    print(f"substracting background for walker")
     walker = substract_background(walker, radius=20)
     take = walker*binary
     #print('new version')
@@ -45,7 +47,8 @@ def take_only_walkers_on_fibre_trajectory(in_file, out_file=None):
     new_dims = (dims[0], dims[1], dims[2])
     out = np.zeros(new_dims, dtype=np.uint16)
     for i in range(dims[0]):
-        frame_fibre = stack[i, :, :, 2]
+        print(f"Processing frame {i+1}/{dims[0]}")
+        frame_fibre = stack[i, :, :, 3]
         frame_walker = stack[i, :, :, 0]
         new = take_only_walkers_on_fibre(frame_fibre, frame_walker)
         out[i] = new
