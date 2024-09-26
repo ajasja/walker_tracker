@@ -24,13 +24,14 @@ def take_only_walkers_on_fibre(fibre, walker):
     #plt.show()
     walker = substract_background(walker, radius=20)
     take = walker*binary
-    take = skimage.exposure.rescale_intensity(take, in_range='image', out_range='uint8')
+    # Do not rescale roller chanel 
+    # take = skimage.exposure.rescale_intensity(take, in_range='image', out_range='uint8')
 
     return take
 
 def take_only_walkers_on_fibre_trajectory(in_file, out_file=None):
     """Takes an input file or a stack in the form of TYXC and saves it to out file. Writes the shape of TYX"""  # I changed this to TYXC. My input has a different shape
-
+    print(f"Saving to out file {out_file}, 16 bit integer")
     if isinstance(in_file, str):
         # Could also be a path object, but that would now fail. pethaps change to file exists, or test if in_file is an array
         stack = skio.imread(in_file)
@@ -41,7 +42,7 @@ def take_only_walkers_on_fibre_trajectory(in_file, out_file=None):
     print(dims)
     # skip the channel?
     new_dims = (dims[0], dims[1], dims[2])
-    out = np.zeros(new_dims, dtype=np.uint8)
+    out = np.zeros(new_dims, dtype=np.uint16)
     for i in range(dims[0]):
         frame_fibre = stack[i, :, :, 2]
         frame_walker = stack[i, :, :, 0]
@@ -52,7 +53,7 @@ def take_only_walkers_on_fibre_trajectory(in_file, out_file=None):
         out_file,
         out,
         ome=True,
-        dtype=np.uint8,
+        dtype=np.uint16,
         photometric="minisblack",
         metadata={"axes": "TYX"},
     )

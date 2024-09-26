@@ -84,10 +84,19 @@ with open(macro_path, "w", encoding="utf8") as f:
     f.write(f'open("{aligned_movie_pathname}");\n')
     f.write('run("Split Channels");\n')
     f.write(f'selectImage("{reference_channel}-{aligned_movie_filename}");')
-
+    # first frame (default, better for fixed)
+    # previous frame (better for live)
     f.write(
-        f'run("F4DR Estimate Drift","time=100 max=10 reference=[first frame (default, better for fixed)] apply choose=[{aligned_movie_pathname}]");\n'
+        f'run("F4DR Estimate Drift","time=10 max=10 reference=[first frame (default, better for fixed)] apply choose=[{aligned_movie_pathname}]");\n'
     )
+    f.write(
+'''
+for (i = 1; i <= nSlices; i++) {
+    setSlice(i);
+    run("Enhance Contrast...", "saturated=0.35 equalize"); 
+}
+run("Apply LUT", "yes");
+''')
     if correct_drift:
         for channel in channels:
             if channel != reference_channel:
