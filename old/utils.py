@@ -24,7 +24,8 @@ def take_only_walkers_on_fibre(fibre, walker):
     #plt.show()
     walker = substract_background(walker, radius=20)
     take = walker*binary
-    take = skimage.exposure.rescale_intensity(take, in_range='image', out_range='uint8')
+    # Do not normalize the roller chanel 
+    # take = skimage.exposure.rescale_intensity(take, in_range='image', out_range='uint8')
 
     return take
 
