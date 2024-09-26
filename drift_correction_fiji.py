@@ -3,7 +3,7 @@ import lumicks.pylake as lk
 import os
 from pathlib import Path
 import argparse
-
+import tifffile
 
 parser = argparse.ArgumentParser(
     description="""Script to drift-correct movies.""",
@@ -20,15 +20,15 @@ parser.add_argument(
 parser.add_argument(
     "-f",
     "--path-to-fiji",
-    default="C:/Program Files (x86)/Fiji.app/ImageJ-win64.exe",
+    default="C:/Users/lizau/fiji-win64/Fiji.app/ImageJ-win64.exe",
     help="Path to fiji executable. Default='C:/Program Files (x86)/Fiji.app/ImageJ-win64.exe'",
 )
 
 parser.add_argument(
     "-c",
     "--reference-channel",
-    default="C3",
-    help="Reference channel. C1=red C2=green C3=blue. Default=C3",
+    default="C4",
+    help="Reference channel. C1=red C2=green C3=blue C4=gray. Default=C4",
 )
 
 parser.add_argument(
@@ -43,7 +43,7 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-channels = ["C1", "C2", "C3"]
+channels = ["C1", "C2", "C3", "C4"]
 
 if args.reference_channel not in channels:
     raise ValueError("Incorrect value for channel")
@@ -60,14 +60,18 @@ os.makedirs(output_path, exist_ok=True)
 
 movie_filename = os.path.basename(movie_path)
 
-movie = lk.ImageStack(movie_path)  # Loading a stack.
-aligned_movie_filename = Path(movie_path).stem + "_aligned.tiff"
+#movie = lk.ImageStack(movie_path)  # Loading a stack.
+movie = tifffile.imread(movie_path)
+aligned_movie_filename = Path(movie_path).stem + ".tif"
 aligned_movie_pathname = output_path / aligned_movie_filename
 aligned_movie_pathname = aligned_movie_pathname.resolve()
 
+
+aligned_movie_pathname=movie_path
+'''
 if not args.dry_run:
     movie.export_tiff(aligned_movie_pathname)  # Save aligned wt stack
-
+'''
 
 # Write Fiji macro to file
 correct_drift = True
@@ -83,9 +87,9 @@ drift_table = str(drift_table).replace("\\", "/")
 with open(macro_path, "w", encoding="utf8") as f:
     f.write(f'open("{aligned_movie_pathname}");\n')
     f.write('run("Split Channels");\n')
-    f.write(f'selectImage("{reference_channel}-{aligned_movie_filename}");')
-    # first frame (default, better for fixed)
-    # previous frame (better for live)
+    f.write(f'selectImage("{reference_channel}-{aligned_movie_filename}");\n')
+    #f.write('run("Enhance Contrast", "saturated=0.35");\n')
+    #f.write('run("Apply");\n')
     f.write(
         f'run("F4DR Estimate Drift","time=10 max=10 reference=[first frame (default, better for fixed)] apply choose=[{aligned_movie_pathname}]");\n'
     )
@@ -108,7 +112,7 @@ run("Apply LUT", "yes");
 
         # This one can also be written as a loop if we expect to have more than the RGB channels
         f.write(
-            f'run("Merge Channels...", "c1=[C1-{aligned_movie_filename} - drift corrected] c2=[C2-{aligned_movie_filename} - drift corrected] c3=[C3-{aligned_movie_filename} - drift corrected] create");\n'
+            f'run("Merge Channels...", "c1=[C1-{aligned_movie_filename} - drift corrected] c2=[C2-{aligned_movie_filename} - drift corrected] c3=[C3-{aligned_movie_filename} - drift corrected] c4=[C4-{aligned_movie_filename} - drift corrected]  create");\n'
         )
         f.write(
             f'saveAs("Tiff", "{aligned_movie_pathname.replace(".tiff", "").replace(".tif", "")}_drift_corrected.tif");\n'
@@ -132,5 +136,5 @@ print("Finished fiji processing")
 
 # os.remove(drift_table)
 # os.remove(macro_path)
-if not args.keep_uncorrected_movie:
-    os.remove(aligned_movie_pathname)
+#if not args.keep_uncorrected_movie:
+#    os.remove(aligned_movie_pathname)
