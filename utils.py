@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import tifffile
 import numpy as np
 import os
+from pathlib import Path
+import trackpy as tp
 
 # Taken form https://medium.com/@DahlitzF/how-to-create-your-own-timing-context-manager-in-python-a0e944b48cf8
 from contextlib import contextmanager
@@ -146,6 +148,41 @@ def fit_single_molecules(out_dir, basename,
     out_locs.with_suffix(".yaml").rename(new_out_locs.with_suffix(".yaml"))
     out_locs.rename(new_out_locs)
     return new_out_locs
+
+
+def link_trajectory(locs_path,
+                          max_link_displacement_px = 2,
+                          max_gap = 2,
+                          min_tray_length = 3,
+                         ):
+    """Takes a locs file and links the trajectories. Exclude very short trays.
+    Must be larger or equal min_tray_length 
+    Returns a pandas dataframe of trajectories, the path of the trajectories, pandas dataframe of steps, path of the steps.     
+    """
+    locs = pd.read_hdf(locs_path, "locs")
+    locs["mass"] = locs.photons
+
+    tray = tp.link(locs, search_range=max_link_displacement_px, memory=max_gap)
+
+    # count the length of trajectories
+    tray_by_particle = tray.groupby(["particle"])
+    tray["length"] = tray_by_particle["particle"].transform("count")
+
+
+    # Exclude very short trays
+    tray = tray.query(f"length>={min_tray_length}")
+
+    steps = tray.groupby(["particle"]).apply(get_steps_from_df)
+    steps["step_len"] = np.sqrt(steps.dx**2 + steps.dy**2)
+
+    suffix = f"__link{max_link_displacement_px}_traylen{min_tray_length}"
+    base_linked_tray = Path(f'{locs_path.with_suffix("")}{suffix}')
+    tray_out = base_linked_tray.with_suffix(".tray.csv.gz")
+    tray.to_csv(tray_out)
+    steps_out = base_linked_tray.with_suffix(".steps.csv.gz")
+    steps.to_csv(steps_out)
+
+    return tray, tray_out, steps, steps_out
 
 
 def get_steps_from_df(df):
