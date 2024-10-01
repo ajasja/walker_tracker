@@ -7,6 +7,7 @@ import skimage
 import matplotlib.pyplot as plt
 import tifffile
 import numpy as np
+import os
 
 # Taken form https://medium.com/@DahlitzF/how-to-create-your-own-timing-context-manager-in-python-a0e944b48cf8
 from contextlib import contextmanager
@@ -116,6 +117,35 @@ def subtract_background(image, radius=50, light_bg=False):
         return black_tophat(image, str_el)
     else:
         return white_tophat(image, str_el)
+
+
+def fit_single_molecules(out_dir, basename,
+                          fit_method = "lq",
+                          box_side_length = 9,
+                          drift = 0,
+                          min_gradient = 1000,
+                          px_to_nm = 72):
+    """Fit the positions in the walker channel. Currently uses picasso that is expected to be available in the path of the environment.
+       Returns the            
+    """
+    #os.environ['HDF5_DISABLE_VERSION_CHECK']='0'
+    #TOOD add out parameter
+    cmd = f"python -m picasso localize {out_dir/basename} --fit-method {fit_method} --box-side-length {box_side_length}  --gradient {min_gradient} --drift {drift} --pixelsize {px_to_nm}"
+    print(cmd)
+    os.system(cmd)
+    basename_noext, ext = os.path.splitext(basename)
+    # Hack -- for now just rename the out file. This is dangerous in multithreaded environment.
+    out_locs = out_dir / (basename_noext + "_locs.hdf5")
+    new_suffix = f"__locs_{fit_method}_box{box_side_length}_grad{min_gradient}_drift{drift}.hdf5"
+    new_out_locs = out_dir / (basename_noext + new_suffix)
+    #print(new_out_locs)
+    if os.path.exists(new_out_locs):
+        os.remove(new_out_locs)
+    if os.path.exists(new_out_locs.with_suffix(".yaml")):
+        os.remove(new_out_locs.with_suffix(".yaml"))
+    out_locs.with_suffix(".yaml").rename(new_out_locs.with_suffix(".yaml"))
+    out_locs.rename(new_out_locs)
+    return new_out_locs
 
 
 def get_steps_from_df(df):
