@@ -1,0 +1,17 @@
+open("output/20240206-114518_WT_aligned.tif");
+run("Split Channels");
+selectImage("C3-20240206-114518_WT_aligned.tif");
+run("F4DR Estimate Drift","time=100 max=10 reference=[first frame (default, better for fixed)] apply choose=[g:/My Drive/Kemijski_institut/Doktorat/microscope_data_analysis/walker_tracker/output/output.njt]");
+selectImage("C2-20240206-114518_WT_aligned.tif");
+run("F4DR Correct Drift", "choose=[g:/My Drive/Kemijski_institut/Doktorat/microscope_data_analysis/walker_tracker/output/outputDriftTable.njt]");
+selectImage("C1-20240206-114518_WT_aligned.tif");
+run("F4DR Correct Drift", "choose=[g:/My Drive/Kemijski_institut/Doktorat/microscope_data_analysis/walker_tracker/output/outputDriftTable.njt]");
+selectImage("C3-20240206-114518_WT_aligned.tif");
+close();
+selectImage("C2-20240206-114518_WT_aligned.tif");
+close();
+selectImage("C1-20240206-114518_WT_aligned.tif");
+close();
+run("Merge Channels...", "c1=[C1-20240206-114518_WT_aligned.tif - drift corrected] c2=[C2-20240206-114518_WT_aligned.tif - drift corrected] c3=[C3-20240206-114518_WT_aligned.tif - drift corrected] create");
+saveAs("Tiff", "g:/My Drive/Kemijski_institut/Doktorat/microscope_data_analysis/walker_tracker/output/20240206-114518_WT_aligned_drift_corrected.tif");
+run("Quit");

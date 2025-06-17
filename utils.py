@@ -26,6 +26,7 @@ def timing(description: str) -> None:
 def take_only_walkers_on_fibre(
     fibre,
     walker,
+    out_dir=None,
     fibre_background_radius=10,
     min_fibre_size=20,
     fibre_background_light=True,
@@ -36,7 +37,8 @@ def take_only_walkers_on_fibre(
     fibre = skimage.exposure.rescale_intensity(fibre, in_range="image", out_range="uint8")
     fibre = subtract_background(fibre, radius=fibre_background_radius, light_bg=fibre_background_light)
 
-    thresh = skimage.filters.threshold_otsu(fibre)
+    #thresh = skimage.filters.threshold_otsu(fibre)
+    thresh = skimage.filters.threshold_triangle(fibre)
     binary = fibre > thresh
 
     # Remove small parts
@@ -45,6 +47,9 @@ def take_only_walkers_on_fibre(
     # extend the treshold region
     # binary= skimage.filters.gaussian(binary)
     binary = skimage.morphology.binary_dilation(binary, footprint=skimage.morphology.disk(fibre_extend_radius))
+
+    plt.imsave(f'{out_dir}_mask.png', binary)
+    #plt.show()
 
     # blur borders
     binary = skimage.filters.gaussian(binary)
@@ -61,7 +66,7 @@ def take_only_walkers_on_fibre(
 
 def take_only_walkers_on_fibre_trajectory(
     in_file,
-    out_file=None,
+    out_dir=None,
     walker_channel=0,
     fibre_chanel=3,
     fibre_background_radius=10,
@@ -89,12 +94,14 @@ def take_only_walkers_on_fibre_trajectory(
         new = take_only_walkers_on_fibre(
             frame_fibre,
             frame_walker,
+            out_dir=out_dir,
             fibre_background_radius=fibre_background_radius,
             min_fibre_size=min_fibre_size,
             fibre_background_light=fibre_background_light,
             fibre_extend_radius=fibre_extend_radius,
         )
         out[i] = new
+    out_file = f'{out_dir}.tif'
 
     tifffile.imwrite(
         out_file,
