@@ -93,14 +93,14 @@ with open(macro_path, "w", encoding="utf8") as f:
     f.write(
         f'run("F4DR Estimate Drift","time=10 max=10 reference=[first frame (default, better for fixed)] apply choose=[{aligned_movie_pathname}]");\n'
     )
-    f.write(
-'''
+    '''f.write(
+
 for (i = 1; i <= nSlices; i++) {
     setSlice(i);
     run("Enhance Contrast...", "saturated=0.35 equalize"); 
 }
 run("Apply LUT", "yes");
-''')
+)'''
     if correct_drift:
         for channel in channels:
             if channel != reference_channel:
