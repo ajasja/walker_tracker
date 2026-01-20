@@ -265,7 +265,10 @@ The expected outputs are the following:
 
 ## Citation
 
-If you use this code in academic work, please cite the associated publication (if applicable).
+If you use this code in academic work, please cite the associated publication:
+
+**De-novo design of a random protein walker**
+doi: https://doi.org/10.1101/2025.09.29.677966
 
 ---
 
