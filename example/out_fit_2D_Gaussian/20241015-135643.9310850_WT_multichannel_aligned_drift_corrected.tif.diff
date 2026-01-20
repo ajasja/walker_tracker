@@ -1,0 +1,405 @@
+anderson_test: !!python/object/apply:copyreg.__newobj_ex__
+  args:
+  - !!python/name:scipy.stats._morestats.AndersonResult ''
+  - !!python/tuple
+    - !!python/object/apply:numpy.core.multiarray.scalar
+      - &id001 !!python/object/apply:numpy.dtype
+        args:
+        - f8
+        - false
+        - true
+        state: !!python/tuple
+        - 3
+        - <
+        - null
+        - null
+        - null
+        - -1
+        - -1
+        - 0
+      - !!binary |
+        AC2W/EQOIUA=
+    - !!python/object/apply:numpy.core.multiarray._reconstruct
+      args:
+      - &id002 !!python/name:numpy.ndarray ''
+      - !!python/tuple
+        - 0
+      - !!binary |
+        Yg==
+      state: !!python/tuple
+      - 1
+      - !!python/tuple
+        - 5
+      - *id001
+      - false
+      - !!binary |
+        ZmZmZmZm4j/2KFyPwvXkPx+F61G4Huk/HVpkO99P7T9xPQrXo3DxPw==
+    - !!python/object/apply:numpy.core.multiarray._reconstruct
+      args:
+      - *id002
+      - !!python/tuple
+        - 0
+      - !!binary |
+        Yg==
+      state: !!python/tuple
+      - 1
+      - !!python/tuple
+        - 5
+      - *id001
+      - false
+      - !!binary |
+        AAAAAAAALkAAAAAAAAAkQAAAAAAAABRAAAAAAAAABEAAAAAAAADwPw==
+  - &id005
+    fit_result: !!python/object:scipy.stats._fit.FitResult
+      _data: !!python/object/apply:numpy.core.multiarray._reconstruct
+        args:
+        - *id002
+        - !!python/tuple
+          - 0
+        - !!binary |
+          Yg==
+        state: !!python/tuple
+        - 1
+        - !!python/tuple
+          - 1845
+        - &id003 !!python/object/apply:numpy.dtype
+          args:
+          - f4
+          - false
+          - true
+          state: !!python/tuple
+          - 3
+          - <
+          - null
+          - null
+          - null
+          - -1
+          - -1
+          - 0
+        - false
+        - !!binary |
+          gGLsv/D957/Q4uG/cH/cvyCf0r/Q9NG/4LjLv6B9yr9Q8MS/0CLDv3AFw79Axbu/EFu7vwApt7+w
+          B7W/MKOwv1Cmr7+wUa6/YGarv2APqL8QIaa/INikv5D4o7+A06K/cIiiv6Bbor/AmqC/sNGcv2DZ
+          mr+wOpq/4DGYv8D3l79QdJe/wLeVvxC6lL+AYJO/gNeSv7Aikr/gHpC/sOKPvyC6jr/gPYu/oKuK
+          v3Cjib+AR4i/cMOHv8Cmh7/gXYa/wNuFv2AxhL9Q/oK/oEOCvzAxgr9g6oG/AHGBv9Bmgb/AUIG/
+          wDyBv4Adgb/A+H+/gNF4v6A0eL/AsXe/4AF3v6CIdr9AJnS/4KNyv+CVcr9gaHG/4HRwvwAubr8g
+          nG2/AB1tv0CJbL9guWu/AFlqv8CQaL8AV2e/IPxlv4BKZb9AK2W/wOtkvwDBZL8gx2K/4M5hv6DX
+          X7/AsV+/AOtdvwDSXL9gR1y/wGNbv8DaWr+gn1q/AGFav4CxWL/gf1i/4HZSvwDZUL9gN1C/IIBO
+          v2B3Tr9AAU6/IDRLv0AkS7+AEUu/oGJKv0BESr/A+Em/4MFJvwCtSb8Aa0m/YH1Iv4DBR7/Aske/
+          gK9Fv0C9RL9AaES/4CNDv8D+Qr9gSEC/AHo+vwDiPL8AIzy/IKQ7v0CPO79Amzi/wI03v0DZNr8A
+          1za/wDM2v4ALNb+ArjS/AIkzv8CCM78gdjO/AFIzv2BGM7/ADDO/QIYyv2A9Mr8AoDG/QOUvv+Ap
+          L79AJy+/AAUvv4ApLr9gCCy/gKgrv2CxKr+AiCq/QHEqv0ApKr/Ayim/YM0ov2DVJr8guia/QJkk
+          v2CSJL8AmSO/QHsjv0CaIr9g0CG/4Jkhv0A9IL8A9x+/gOIfv6AVH79gnx6/wJAevwArHr+A+h2/
+          4E0dv8BFHb8g0xy/QMccv6ClHL8gbBy/oCocvyCwG79Adhu/YBUbv0D3Gr/gZhq/QAgYvwDcF79A
+          bhe/oMsWv4CGFr8AYxa/oEMVv4AQFb9g4hS/wAoUv0D7E7/gEBK/gM0RvwCwEb+AiRG/YIYRv0DC
+          EL+A6Q+/AAIPv0BhDr8AEg6/QLANv0A9Db+AnQy/AEAMvwDoC7+gvgu/ICELv2DICr+A5wm/QHYJ
+          v0DvCL9Aoge/YIYHv0ArB7/A+ga/oJIGv0AGBr/gjgW/YGsFv0ADBb8gjAS/oHIEv8A8BL8ABwS/
+          AJQDv4BfA79AVAO/IEUDv8AfA79gmQK/QBsCv0DpAb+AWAG/YOIAv4AQAL9AW/6+gEP+voBB+76A
+          2/q+gCT5vsCy+L4Ap/i+gAv4vgBr976Auva+wJD1vkAs9b4A5PS+gFz0vsDe874AhvO+QAHzvkD2
+          8r6AqfK+AGHyvsBb8r6AMvK+gBjxvsBu8L6AJvC+gPrvvkBt777AOO++gMLuvkBq7r6Ahu2+AAft
+          voC37L6A7eu+ADnrvoDL6r6Ap+q+APDpvgC56b6Au+i+gALnvgA/5r4A++S+gNPkvsCe5L7AceS+
+          gMzjvoBX4r4AROK+gNLhvgAB4b4AgOC+gGffvgBB376Afd2+AEzdvoAC276Ahdm+gFzZvgDf2L6A
+          PNi+AOPXvgDi176AN9e+gOvWvsA31r6A89W+AHDVvoBD1L4ABdS+ANLTvsDE075ABdO+QLrSvoDa
+          0b7AsdG+gJvRvsAW0b6A7tC+ANTQvsBP0L6A18++wNHPvkC4z74Arc++gDjPvgCIzr6ACc6+wPLN
+          voCkzb4Aj82+wBbNvkDhy77Ac8u+ABjLvoBzyr6AXcq+gLbJvoB0yb4AX8e+gA/HvgDQxr4AOsa+
+          gMzFvgCuxb5AoMW+wE7FvoAVxL4AA8S+AC7DvgDzwb5ARcC+gCLAvoAqvb6A+7y+AEi8vkAjvL6A
+          rru+AIy7voALu74ABLq+APG5voAnub6A7Li+AI24voBAuL7APbi+QP23vgD9t75ArbW+gJW0voAy
+          tL6AEbS+gMCzvkD/sr5AIbC+gO+vvoDWrr6Aka6+AIuuvoB2rr6A1q2+AGCtvgAorb6Akqy+AIKs
+          voBfrL4AIqy+wO2rvgCBq77AZ6u+gM6qvoCUqr5A46m+QCWpvgDtqL4Aw6i+AKKovgDop74A1Ke+
+          wIGnvgBHp74APae+QGGmvsA+pr4A9KW+gLilvoCopb6A4qS+AK6jvgCBo75ATqO+QOqivsAxob4A
+          rKC+gBagvgD1n77AqZ++AJ6fvgAxn77A9J6+QH+evoBZnr6A3Z2+AK6dvgDpnL5AbJy+gMKbvgCP
+          mr5AEJq+ANeZvoCamb6Akpm+AHaZvsDVmL4A1Zi+gAyYvgD/l76Alpe+gJSXvgA7l75AGJe+QOaW
+          vgAnlr4AuZS+QLaUvgB9k74A7pK+gACSvoDxkb4A05G+AGGRvoAzkb5A5pC+QNKQvsCgkL6AjJC+
+          AICQvoA+kL7AEI++QPeOvgCzjr6Aj46+gPKNvoDUjb4AkY2+wFCNvsDwjL7AqIy+gKeMvgB5jL5A
+          noq+wHeJvsDOiL5Azoi+AL+IvgDih75Az4e+ALCHvgBLh76AoYa+ADiGvgCzhb4AeoW+gOaEvgAO
+          hL4A7oO+QMWDvgD1gL5A04C+gNCAvoB9gL6AdYC+AAt/voCcfr6Atny+gK58vgBme74A0nq+gL96
+          vgCeer4A43m+AAV2vgBudb6AFHW+gPV0voCZdL4Ag3O+AGNxvgBKcb6ARXG+ABNxvgD0b74AIW++
+          AN5uvgBjbr4AfG2+AGFtvoD7ar4AG2q+gIpovgCAaL4Ax2e+ALJnvgAnZ74A8WW+AG1lvgClY74A
+          OGO+gLlhvgDQYL4AJmC+AGFdvoBDXb6AlVy+ABZcvgASXL4AwFu+gFFbvgD8Wr6AhFq+gGRavgDo
+          Wb4Aulm+AKxXvgAaV74Abla+ADJWvgDsVL4AW1S+AFZTvgBoUr4AyFC+AF9QvoAvUL4A7k++AHVP
+          vgDuTr6Amk6+AFxOvgBjTb6A10y+AIBMvgBBTL4AFku+ALpKvgCsSb4ApUm+AEZJvoDMR74Acke+
+          AH1GvgAURr4AsEW+AEdFvgCHRL4AKUS+AOxDvgD2Qr6Ap0K+gKFCvgAwQr4A30G+gDJAvgClP74A
+          VD++gJY+vgDHPb6Anj2+ALk8voCkPL4A4ju+gMk7vgC/O74Aaju+AG86vgDQOL4A+ze+gKY3vgA1
+          N74ADTe+gPg2voC6Nr4AVjS+gD00vgBEM74ARDO+gOoyvgDQMr4AfjG+AC8xvgD+ML4AoC++AFgv
+          vgBaLr4ASC6+ACYuvoCHLL4A1yu+ALIrvgBBK74AsCq+AGQqvgCZKb4A9ii+AJ8ovoCJJ74Aeye+
+          AD0nvoDHJr4Axya+AC8lvgBfIr4AFyK+gN8hvoCDIb4AYB6+AEkevgDOHL4AvBu+gJAbvgBkG74A
+          Yhu+AD8bvoD1Gr6A6hq+AIYZvoDpGL4AtBi+gLIXvgDrFr4Arha+gHQVvgBGFb6ARBW+ANEUvoA3
+          FL6A/BO+AEkRvgBrEL4A5Q++AHoPvgAJD76A7Q2+AKUNvgCEDb4Aqgy+AI4MvoBADL6Aygq+AJYJ
+          vgCPCb6AdQm+AHgIvgBcCL4AIAi+ALEDvoAgA74AvAK+ABQCvgDyAb4AOgG+gO8AvgCD/b0AdPu9
+          AE/7vQDF+r0Apvq9AF76vQDm+b0AW/i9AOr3vQBI970Aava9AMz1vQCe9b0ATPW9ADP1vQDP9L0A
+          mfS9AJnyvQDU8b0AjfG9AHTxvQAZ8b0AXO+9AFXvvQBU770Azu69ALbuvQCI7r0AcO69ALLtvQB4
+          7b0Aruu9AJ7qvQDE6L0AmOa9AKzjvQDz4r0AduK9AM7hvQCK4b0A/OC9AKTgvQAh4L0APtu9ADPa
+          vQCS2L0ADdS9AOXTvQBo0b0AWs69ACrOvQC2zb0ArM29ANLMvQDIzL0AqMy9AEzLvQDmyr0AiMm9
+          AHfJvQAKyb0AIMi9APLDvQC9wb0A1L29AHa3vQCOtb0A2LG9AMmxvQB2sb0AKrG9AACxvQAksL0A
+          BK+9ALyuvQBUrr0Aeqy9ABysvQAyq70ALqq9AMipvQAyqL0AwaS9AKiivQBmob0AqZ+9AIifvQCQ
+          nb0A5Jy9AAGcvQC8mr0Af5q9AGqavQD0l70A7pe9AIyWvQA4lL0AEpC9AE6PvQCAjb0AP429ADeM
+          vQAsjL0A4Iu9AMKLvQCyir0AkIq9ANyHvQCvhr0ABoa9AAaGvQD4hL0AK4S9ANiDvQBkg70AxIK9
+          ACaCvQDEgb0AioC9AMR+vQCefr0Aun29AOB7vQBKdb0ABnW9AHZvvQAEbr0A1Gm9AHRpvQBGab0A
+          1Ga9AAZkvQDcYb0AYl69ALRdvQD8Wb0A+Fm9AC5YvQD4TL0AIku9AKRKvQCGSb0AZEm9AHhDvQAS
+          P70ARDm9ABY5vQAYNL0A3im9AKApvQAYKL0AsCW9AOgjvQCaI70AliG9AMggvQA2Hr0A4Bu9ANgb
+          vQDGGr0AphK9AEgQvQDwDr0AHAy9ALAJvQDIBL0AlAS9AFQCvQD4Ab0AIAC9ANj1vADQ8rwALPK8
+          ALTxvABY47wAtNq8AHjUvAA4ybwAVMa8APDCvACcwbwA+MC8AKC6vACAurwAqLm8AJS4vAB4t7wA
+          2K+8AAipvADcobwA7J68ADiXvAD4lbwAEJG8AGiQvAAgjLwAUIi8AFCHvACQhbwANIW8AMCEvACg
+          gLwAQHm8ADBgvAB4ULwAwEe8ABA1vAC4NLwAKDO8ACgdvADgGbwAQBm8AKgSvACwEbwAaA+8AAD2
+          uwBQyLsAoMa7ALDBuwCgvrsAQLi7AEC3uwDgs7sAEJq7ANCOuwCgXrsAYB27AEAMuwBABbsAgHa6
+          AABsugAAFLoAANC4AABguAAATjkAANw5AABMOgAAjzoAAJA6AGA1OwAgPDsAwGk7AHCPOwAglDsA
+          gJw7AEDsOwDA/zsAWAY8AOAGPADoDzwA0BA8APgVPAD4KTwAsC88AJAzPAC4NjwAgEU8APhIPAAA
+          TTwAoFg8AHBiPACYaDwA8Gw8AOCDPADwhTwAEIk8AByLPAAIjDwAcI48AIiVPABQlzwAYJc8AMSa
+          PABcmzwA8J48AMCfPADoozwAxKU8AACyPABEsjwA8LM8ABC1PABQuTwAcL88AIDCPABAxjwA0M08
+          AIjUPABw3TwAuN88AFjpPACE6zwAGPE8ABD5PADM+jwA6P08AB4DPQAsBT0A9AU9ALYQPQBmET0A
+          mBE9AIIcPQDCHT0A3iE9ALAiPQDSIj0ARCQ9AJQmPQCmJz0AyCg9AHgpPQDoMz0A2DU9AEw5PQCc
+          Oj0AtDo9AJg+PQD8QD0AdkE9AIBFPQDYSz0A5ks9AFRMPQCoTD0AcFA9ANJQPQC0UT0AnFI9ABJT
+          PQCeVj0AzFY9AHZYPQBYXD0AuGA9AJxhPQB8Yj0A8GM9AKBpPQBYbD0AIm89AHxzPQBYeT0AmHw9
+          AHZ9PQAqfz0AlH89AGWDPQBMhT0AaIU9AHSGPQCQhj0AjIg9APWIPQAaiT0AGok9AEuJPQBMiT0A
+          SIo9AIyLPQCOjD0AQI09AEWOPQC6kT0APJI9AFqTPQCUkz0A1Jc9AByYPQBamD0A0Zg9AAKaPQCA
+          mz0Atps9ABqcPQAjnT0ArJ89ABSgPQCYoD0A/6E9AKKjPQDUoz0A+6M9ABylPQDKpT0A4KU9AJKn
+          PQCkpz0AYKg9AHGoPQDQqD0AA6k9APqrPQAYrz0ABrA9AFWwPQB6sD0AYLI9AFq0PQCOtD0A7ro9
+          AD27PQBsuz0AfLw9AKq8PQClvT0ADL49gP++PQBmvz0Alr89AILCPQAYxD0AYsQ9AJ/EPQB9xT0A
+          KMY9AJvGPQAWxz0APso9AIfLPQDzyz0AZ8w9AOTMPQCLzT0A7c49ABbSPQAg0j0AWNI9AHDTPQAm
+          1D0AgNQ9ANjUPQBC1j0A9NY9AAvXPQAS2D0Awts9AHDcPQDo3D0AJt09AC3dPQAM3z0AzuA9AE7i
+          PQCm4j0A8uM9AF3lPQAV5j0Ahuc9AILqPQAo6z0Ave09AJnwPQAI8T0AN/E9AD/xPQBe8T0Aa/E9
+          AGLyPQBJ9D0AdvQ9ANb2PQCk9z0A4Pc9ACz4PQBJ+D0AXvk9AOX5PQAy+j0ATvs9AF78PQD8/j0A
+          Mv89AHz/PQAkAj4AyQI+AC4DPgAfBD4AnwU+AL8GPoDbBj4AIwc+AFIHPgAHCD4AWwg+gJwIPoDz
+          CD6AOgk+AEYJPoDeCT6A9Ak+ABAKPoCRCj6A8wo+AFkMPgDlDj4AHQ8+AEIPPgBdED4AyhA+gCIS
+          PgBZEj4AmRI+ABQTPgBoFD4AZxU+AG4VPgByFT4A/hU+AEkWPgAtFz6Afhc+gHcYPgCpGT4AUBo+
+          AAAdPgCHHT4ALB4+AHIePgAAHz4AKx8+AJ4fPoAVID6ALiA+AG4gPgCDID4ARSE+AI8hPgC3IT4A
+          LCI+AGAiPgDoIj4AriM+AHUkPgCqJD4AaCY+gHgmPgCHJj4AGCc+AIAnPgCiJz4Apic+AKknPgAC
+          KD4A1Sk+gCgrPgAWLD4A0yw+AHstPgDlLT6AEy8+AHQwPgDBMD6AdTI+gDI1PgCANT4A9DU+AJ02
+          PgBTNz4A4zc+gKs4PoAhOT4A8Dk+ABg7PgB1Oz4AJDw+AF08PoBgPD4AZTw+ABA9PoBgPj4ACz8+
+          gMtAPgCpQT4A1kQ+gP9EPgA4RT4AR0U+gP1GPoClRz4ADEg+gGxIPgBfST4A5kk+gB5KPgBZSj6A
+          fEo+AIpKPgDaSj4AXks+AJVLPgDjSz6AoU0+AGFOPoAUUD6A/lA+gJdRPgDyUT4AxFI+gLBTPgD/
+          Uz4AZlU+gOVVPgBOVj4AmVY+AMFWPgDjVj4APVg+gF1dPoD1Xz6ABGE+AB9hPgCgYz4ABmQ+gL9k
+          PgDYZj4AFmg+ACdqPgBRaj4AeGo+gPRqPoBHaz6ASWs+ADhsPgBvbT6AN3A+AINwPgAIcT4APXE+
+          AEBxPgBDcj4AzXI+gDFzPgCEcz6AoHM+gPJzPoCTdD4ArHQ+gEd2PgAodz4A4Xc+AE14PgBVeD4A
+          w3g+ALB5PgCwej4A8Xo+gIB7PgCSfD4Ao3w+AA99PgBefT4APn4+gIl+PgC1fj7AuIA+QCqBPsBm
+          gT5ApYE+wFCCPgD8gj6AIIM+gCiDPkA5gz6ASYM+QGuDPkCRgz5ADYQ+wM2EPsDbhD5A64Q+wMCF
+          PgDbhT6AA4Y+QAaGPsDdhj6AlYc+gPWHPoB9iT7AnYk+AO+JPsArij6AaIo+gH6KPsCRij6A4oo+
+          gPSKPoCdiz4Ao4s+QCyMPoDljD4A6Iw+gAaNPoCNjT4Ar40+gLWNPgD5jT6AJo4+QDaOPoBvjj5A
+          Ao8+ACyPPoA4kD7AkpA+ALeQPoAOkT6AM5E+gG+RPsCLkT4AbZM+gF+UPkDhlD6ANJU+QNqVPoD2
+          lz7AEZg+gGaYPsCCmD6A3pg+ADeZPsBlmT5AqZk+gLeZPgBMmj6Ax5o+AMyaPgA5mz6Ahpw+ALSc
+          PgAQnT6AHZ0+wGedPkBKoD6AXaA+AHahPgCgoT4A4KE+gAyiPoBIoj7AbqI+QHyiPkCJoj4AjKI+
+          gNuiPoBVoz6AmaM+gP6jPkDEpD4AraU+QB2mPoCTpj4AnaY+APSnPsBsqD6Aoag+gLeoPoDhqD4A
+          Hak+gP6pPgDoqj6AR6s+AF+rPgCqqz5AHKw+wDqsPoCjrD5AbK0+gG+tPgDfrT5A7q0+gIyuPgDX
+          rj7A+K4+AGWvPoCrrz6AprA+AJexPgChsT4AzbE+APGxPgArsj6Ak7I+gKmzPgCFtD5AjrQ+QKG0
+          PkCptD6AP7Y+wCm3PgDWuD4AELk+AGy5PgCNuT7AhLs+gJG7PkDSuz6AOrw+gD+8PkBqvD7Ai7w+
+          AJq8PkCsvT6Ayb0+ACS+PkBQwT5AwcE+ABLCPgChwj4ATMM+QE7DPsBywz7AbMU+gMzFPsDrxT4A
+          ScY+gGbGPoDFxj4ANMg+wDnIPoBDyT5Ai8k+AIHKPgDwyj6AFss+QLTLPgA+zT6AtM0+QCDOPgBz
+          zj4A8M8+wBXQPoAq0T6AUtE+AOfRPgC/0z4A6NM+QOnTPkD+0z4AttQ+gLXVPgBZ1j4AwtY+AM7W
+          PgAc1z6AOdc+AF/XPoDi1z4AQdg+gCXZPkBm2T6A3tk+gFXaPgBj2j4Azdo+wLzbPoDP2z5Ah9w+
+          gIncPgAW3T6AGt4+gAbhPoCi4T4AruE+AGniPgC64j6AzuQ+AFblPgD65T7AcOg+wAvpPgA+6T4A
+          N+o+wPXrPgD97D6AB+0+gBHuPgAe7j4AJe4+AL7uPsAF7z4Adu8+AA/wPkDq8T7At/Q+wLj0PsAi
+          9T5A//U+wHb3PsCG9z7Anvc+AB74PkBE+T4Auvk+AJj6PgCs+j7APPs+wA79PgBJ/T7Aov0+AHP+
+          PoDu/j6AJP8+QCv/PsAEAD8ALgA/AFoAP+AmAj9AwgI/QP4CPwCxAz/gyAM/wPMDP0AEBD/AKQQ/
+          gEsEPwDOBD/ABQU/QEsGPyBwBj9AdQY/QMEGP4AYCD8guQg/gDAKP0CcCj+gyAo/QOIKP+B9Cz+A
+          7Qs/oBQMP8AkDT/g/w0/4A8OPyAWDj8Atw4/gCEPP0BJDz9glw8/QCARPwAlET+gRBE/IF4RP2Cx
+          ET9A6RE/ADoSP+AEEz9AgBQ/oBsVP8BaFT9AHhY/gEAWPwCJFj/AtRY/oPcXP4BHGD9AYRg/wIMY
+          P8CrGD8gvhg/YO4YP4ABGT+ANRk/wEsZP4CHGT+gyRk/gMoZPyASGz9gQhs/gFwbP+CUGz9gZxw/
+          QHIcP0AMHj8AFh4/QDgeP0C2Hj8A5R4/wBQfPyBRHz9AUR8/wFcfP2BoHz/Arx8/QNgfP0CsID9g
+          ASE/wDEhP4A7IT+AbyE/AJMhPwC9IT8AwCE/gKgiP6DXIj9ARSM/AFAjPwC9Iz8AEiQ/YNAlPwDt
+          JT/A8iU/gPMlPwD/JT8ANCY/QL0mP6AyJz+gbCg/wMIoP8AHKT9gVyk/QIopPyCNKT+AVSw/4HEs
+          P8C0LD8AXC0/gEMuP4BdLj/AxC4/QNwuP0BXMD/AkjA/4BsxPwByMT9g4DE/YOoyPyAWND8gbDU/
+          INM1P6CLNj9ATjc/AK44P8BcOT8AiDk/4JA5P+CqOT+A4zk/AIY7P2C4Oz+AHzw/AOw8PwBqPT8A
+          6T0/YH4/P+DBPz9Axz8/4FRBP0DDQT+AqUI/QBJDPyAwQz9A1kM/QERFP0D8Rj+A90c/gAhKP0Cw
+          Sz8AzUs/4F1MP+B6TD9AB00/gPRNPyCiUD/AHVE/wFNRP4DHUj/AfFM/QC9UP+CSVz9gUlg/gFJY
+          P8ATWj9AXFo/wJxaP8DAWj+AyFo/wK9bP4DSWz/gIFw/wGJdP6CbXT8gU14/YAhgP2BhYD+gNmM/
+          gMtjP4CIZz9g7mc/AD9oP8CbaT8gDWs/QNJrP8CCbj9gyHA/wCVyPyCDcj8gq3I/ALR0P0CNez8A
+          53w/YId9P0Dzfj/wUYA/gLKAPyCRgz9gfoQ/oBOHP/APiT+QYok/wDOKP6AZiz+wKIw/IKSMPzCg
+          jT+AtpA/0BmRP9D7kT+A2pY/4FuXP1DAlz/QxZc/0OGXP3CgmD+w7Jg/MGGZP8Dhmj8AgZw/wJed
+          P4CNnj9AA58/QMmiP3BUpD8QmaQ/gJ+lP7CRpz8gdag/ECerPzB3qz8Aiaw/QCCtPxCzrz8gs68/
+          YC6yP7A0tj+Ayrc/YCC4P+DIuD9gULs/AK69P7Covj8gMsI/sLbDP4Aqxj+A18c/kFXIPxDQyD+g
+          8Mg/ILrOPyCd0D+QRtQ/4APbP0Af5j8whPU/
+      _dist: &id004 !!python/object:scipy.stats._continuous_distns.norm_gen
+        __doc__: "A normal continuous random variable.\n\n    The location (``loc``)\
+          \ keyword specifies the mean.\n    The scale (``scale``) keyword specifies\
+          \ the standard deviation.\n\n    As an instance of the `rv_continuous` class,\
+          \ `norm` object inherits from it\n    a collection of generic methods (see\
+          \ below for the full list),\n    and completes them with details specific\
+          \ for this particular distribution.\n    \n    Methods\n    -------\n  \
+          \  rvs(loc=0, scale=1, size=1, random_state=None)\n        Random variates.\n\
+          \    pdf(x, loc=0, scale=1)\n        Probability density function.\n   \
+          \ logpdf(x, loc=0, scale=1)\n        Log of the probability density function.\n\
+          \    cdf(x, loc=0, scale=1)\n        Cumulative distribution function.\n\
+          \    logcdf(x, loc=0, scale=1)\n        Log of the cumulative distribution\
+          \ function.\n    sf(x, loc=0, scale=1)\n        Survival function  (also\
+          \ defined as ``1 - cdf``, but `sf` is sometimes more accurate).\n    logsf(x,\
+          \ loc=0, scale=1)\n        Log of the survival function.\n    ppf(q, loc=0,\
+          \ scale=1)\n        Percent point function (inverse of ``cdf`` --- percentiles).\n\
+          \    isf(q, loc=0, scale=1)\n        Inverse survival function (inverse\
+          \ of ``sf``).\n    moment(order, loc=0, scale=1)\n        Non-central moment\
+          \ of the specified order.\n    stats(loc=0, scale=1, moments='mv')\n   \
+          \     Mean('m'), variance('v'), skew('s'), and/or kurtosis('k').\n    entropy(loc=0,\
+          \ scale=1)\n        (Differential) entropy of the RV.\n    fit(data)\n \
+          \       Parameter estimates for generic data.\n        See `scipy.stats.rv_continuous.fit\
+          \ <https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.rv_continuous.fit.html#scipy.stats.rv_continuous.fit>`__\
+          \ for detailed documentation of the\n        keyword arguments.\n    expect(func,\
+          \ args=(), loc=0, scale=1, lb=None, ub=None, conditional=False, **kwds)\n\
+          \        Expected value of a function (of one argument) with respect to\
+          \ the distribution.\n    median(loc=0, scale=1)\n        Median of the distribution.\n\
+          \    mean(loc=0, scale=1)\n        Mean of the distribution.\n    var(loc=0,\
+          \ scale=1)\n        Variance of the distribution.\n    std(loc=0, scale=1)\n\
+          \        Standard deviation of the distribution.\n    interval(confidence,\
+          \ loc=0, scale=1)\n        Confidence interval with equal areas around the\
+          \ median.\n\n    Notes\n    -----\n    The probability density function\
+          \ for `norm` is:\n\n    .. math::\n\n        f(x) = \\frac{\\exp(-x^2/2)}{\\\
+          sqrt{2\\pi}}\n\n    for a real number :math:`x`.\n\n    The probability\
+          \ density above is defined in the \"standardized\" form. To shift\n    and/or\
+          \ scale the distribution use the ``loc`` and ``scale`` parameters.\n   \
+          \ Specifically, ``norm.pdf(x, loc, scale)`` is identically\n    equivalent\
+          \ to ``norm.pdf(y) / scale`` with\n    ``y = (x - loc) / scale``. Note that\
+          \ shifting the location of a distribution\n    does not make it a \"noncentral\"\
+          \ distribution; noncentral generalizations of\n    some distributions are\
+          \ available in separate classes.\n\n    Examples\n    --------\n    >>>\
+          \ import numpy as np\n    >>> from scipy.stats import norm\n    >>> import\
+          \ matplotlib.pyplot as plt\n    >>> fig, ax = plt.subplots(1, 1)\n    \n\
+          \    Calculate the first four moments:\n    \n    \n    >>> mean, var, skew,\
+          \ kurt = norm.stats(moments='mvsk')\n    \n    Display the probability density\
+          \ function (``pdf``):\n    \n    >>> x = np.linspace(norm.ppf(0.01),\n \
+          \   ...                 norm.ppf(0.99), 100)\n    >>> ax.plot(x, norm.pdf(x),\n\
+          \    ...        'r-', lw=5, alpha=0.6, label='norm pdf')\n    \n    Alternatively,\
+          \ the distribution object can be called (as a function)\n    to fix the\
+          \ shape, location and scale parameters. This returns a \"frozen\"\n    RV\
+          \ object holding the given parameters fixed.\n    \n    Freeze the distribution\
+          \ and display the frozen ``pdf``:\n    \n    >>> rv = norm()\n    >>> ax.plot(x,\
+          \ rv.pdf(x), 'k-', lw=2, label='frozen pdf')\n    \n    Check accuracy of\
+          \ ``cdf`` and ``ppf``:\n    \n    >>> vals = norm.ppf([0.001, 0.5, 0.999])\n\
+          \    >>> np.allclose([0.001, 0.5, 0.999], norm.cdf(vals))\n    True\n  \
+          \  \n    Generate random numbers:\n    \n    >>> r = norm.rvs(size=1000)\n\
+          \    \n    And compare the histogram:\n    \n    >>> ax.hist(r, density=True,\
+          \ bins='auto', histtype='stepfilled', alpha=0.2)\n    >>> ax.set_xlim([x[0],\
+          \ x[-1]])\n    >>> ax.legend(loc='best', frameon=False)\n    >>> plt.show()\n\
+          \    \n\n    "
+        _ctor_param:
+          a: null
+          b: null
+          badvalue: null
+          longname: null
+          momtype: 1
+          name: norm
+          seed: null
+          shapes: null
+          xtol: 1.0e-14
+        _parse_arg_template: "\ndef _parse_args(self,  loc=0, scale=1):\n    return\
+          \ (), loc, scale\n\ndef _parse_args_rvs(self,  loc=0, scale=1, size=None):\n\
+          \    return self._argcheck_rvs( loc, scale, size=size)\n\ndef _parse_args_stats(self,\
+          \  loc=0, scale=1, moments='mv'):\n    return (), loc, scale, moments\n"
+        _random_state: !!python/object/apply:numpy.random._pickle.__randomstate_ctor
+          args:
+          - MT19937
+          - !!python/name:numpy.random._pickle.__bit_generator_ctor ''
+          state:
+            bit_generator: MT19937
+            gauss: 0.0
+            has_gauss: 0
+            state:
+              key: !!python/object/apply:numpy.core.multiarray._reconstruct
+                args:
+                - *id002
+                - !!python/tuple
+                  - 0
+                - !!binary |
+                  Yg==
+                state: !!python/tuple
+                - 1
+                - !!python/tuple
+                  - 624
+                - !!python/object/apply:numpy.dtype
+                  args:
+                  - u4
+                  - false
+                  - true
+                  state: !!python/tuple
+                  - 3
+                  - <
+                  - null
+                  - null
+                  - null
+                  - -1
+                  - -1
+                  - 0
+                - false
+                - !!binary |
+                  AAAAgM6CZC2RvWq1TNejj2cqaiaQuOr93AIH9Rwvs+yOuiORSDkCcV3RpjmHFuhaoravC5kag5KP
+                  eVQOEI8/TC4CgwJR+rtOpppdxO/hgG+I54UjRDz+SuuxME6yJ53K9sNbsPVtf1i/hkR46CwH4dcI
+                  2o3DoJn2t7dsVhfnuJ9dmPCYG38x8F2NpqsCHu0czYfAmQGH+5vlsz4aKMWHFAClrR630n2lAlP5
+                  y7fW2FwUlBnpeD7iMQxh1whOdWHQOZWUXf3jl9eFI34jSdcmO+4L41WQ0ao/XkuFRIwOo/ULMqaP
+                  vVC31XRJj6kcpPMv7xjiF6K9eKB9K6akQuDthplbNAvnTU1j3s0lC5fzeJO52rSMavIQ5tSLDzIF
+                  e6qk791CGGayLFWZ6mKcbjsBc+dZ6s5CEFhnQbWazOuFxBbTgH5SNWPfEC351llTkjzYTIVBm/l4
+                  Q/2m332eEZg+jROevpPuOmSud8WMRa/xQIxpCmSFxx+dGucnPLiUjztbJC+J9SliA4SYy2Mjpg9J
+                  MZHQnKBKU7C4i/1Q2gBbrzqsSwEedxu9jfXmDvAq5EU2L2giZxQgjt6J4lJFtzaYN89NYi+XpP1v
+                  lwFsPz+mUA6u0KM4BSQ/2UFimjOS1b12kj0/+oKXiPMyZsmIqkRF/3QbeXJTwYmNwbkaqG0AwsKY
+                  NzWdpgIMB4N7eOO59lZqGi8XnwxrdgijWnhtJbmK1mjLxYR3Nz2xzNw3pHkvFr/va+KKgA6a6HBQ
+                  q5eVNrpZUWD8vDaw3DpQ0qsMi4Dk0vCV/T15lsMCqsBx/6XRimDrUkbFelHwom6glS6jiEzxjmKD
+                  w6s+8QoHONwJAx6susf9apmKJaDAo6dYEaUVSjvnmeqjsHtKwUmHkm7nFUhoBCGphpsrUZ7n0hzK
+                  3cGyjyfbKjJwAOpt4Uk68ILLraJIBuVqmmPwaYvMcEzT6LxYIigvammMUwBl2b6G7SbCmapkB8UQ
+                  TxoMt1ZMJj1g0ld0iHm7oe17boLoWTcI/qdsYwbO+nz61n47MsBk1As7h2Yca6Zz7gnkuvBh+ZsZ
+                  NBIOxKNtaMEi5ASa/5xMkiMeLLshCOCy+p+eKEXhSKVncu4TQ2WI52KugnB5QBcpeCe4jbW3RnD8
+                  O7lFYtT/btCvyYNk6vJGeBTK3zHPYQeORlLjXxilPv+1zC0Xwj8AkADzWF4maQxDaBGC6vrJbSYH
+                  hDaJIiaj3EK+ZGUTl284SkNn7tZx/LtQaVOS9VP0PIriNu/FaXPzR5qjQVTi+82+GSy0EgInaO4p
+                  yNIGcVQeOO5h4621YI9DfDynnUvFZApV2/jwTkxEtnOMiOLUCzv0d6J6p1sHgTX62CG5c9PcPbgD
+                  FYW1zB9PMKvLs3bAmQgIGAVUdbMP6m69tTqWXDlvjhkjYvJTuM/TmyiTnNbz6jemOis4PCIgX0WE
+                  Qsqa5SmYfTX9qUdDz0FfujFQtT/L6PTlYDEHi92ZzUJChlypASXpiGognKoVnRtmBVuUtCkRBRyA
+                  POdm3ZPcSK0K0qU6BoKrUkAWanWQbWsrlP57jBNEHlqJ93PHhwlcMIiuJ2+xqBxjM3H5ui8H1K9H
+                  FCjuYVFsnHJE6OeN6FYRjPWjYDVUmIznY41rcOaL9n4lEflyhn/YluCsUsU/HqBwGV9yZP3JAFom
+                  UP9SY6ljlt95JIIoj3ePp1XGNrztk25iwTQqvIccpnAMcmH8mhomxcmV6xnmvwP5edEOBtVPaaTG
+                  a1kj9CZduReCxk89yeKWjS7tG+DM2hLAGQpe0UfPdeB2vLsR6Q/F5YKwmEsobOsD0Z14kGaeMyTa
+                  XbuGajrUFVG21RtYSazDRM5NNe3t2AI1GOsVNI2V13wIEtMtnhQxULceGkRkF059Kq7RpkCMryKK
+                  O4cLxRE/7oFNWopnOcjosekcPDcN/eeMcXdHAeJuoCgbJUSrDzGd6tQxk2B6TwvdK3DJcTgbd2IE
+                  mVqsl8MPEpsfI8lI8wlvcrSDsKSfN8O9bqrviOUwK//QAXnRlnqwFL09wFEawdNlCNSxSx7572xC
+                  RjY9nLRiuZkR8EEfzUXISHi8c8YEKezyO6B6D6UTKr61yeODOWN2mO5yiR0J9g/7fmzGdrxAzZua
+                  jtShCz4Hkyv68RB/s8FIP7zU05YFeAiAku8oF8iaE0ULsCQRGCS1Qx4ElEP/RgTY2VM2unZEe7Vx
+                  qCuwjDRX9WX/yuth4cyVOYUTbILqeSxHMKiuKb8ktZIRaN/+ayXiJz6IU97Uc7PM5Qbs9ioNEope
+                  5WB+7HMFviUkJEGUmt0fCTDQayPGn3MbGZX+CQWp6qaFhs+fwt2qhZDVzCYXyePpzEbk7EnNYVZr
+                  wZCHawfHJyiAhSGI4jyA5pduxrWpsGkf6xa0u8gxYJtoDj71SLM2XErkKemjg6b5yB12xu8+nZHm
+                  DjmjEI5FxDxhB5oRYEoPthWZGJoBpBvV9qgt8Uw6Y33+nlOoeyqR53VGjgaXXfgjqF2lV4gDMlz3
+                  7izPVxV4JPIaX6MFs48VQae6l5hNd3wHMgrJOt9gwFVejtH6s1XDY3DOjk9vZYfszxdX45kMQ4pK
+                  h15G7rxLcHOrdC6GgROS6j9rKnHgIY6qdRxfMjDc483uDgcZnQHb1wBAh0mo/JPQPl60o97u/EAH
+                  nuGYjkRGnkuCaUpTfSIO+T+HpaiarIIBuWPjaR2Ck3kdiWxmA9/U0gFoh7JBC6XQpOOyTGzof0Up
+                  uI8SiFPPqPdjOIwAap9nA9qeoCPL7BDLghYtNa/UAi8Rw1uDQGW7fbzi004BsAz9Jh08fUljksQW
+                  lzm05ulLOc6yJD6sJ1epJLJLXFB8Xeg6a4CFHsLF7ahGhwvKMWfyJ9mtVG5slUIQEf88NIk53KCI
+                  +kac4kfzbDbDbg8+oq56wVCmtyxMer+AUOLu/OOSC8TxsBWczkXWN3kGoPwNd3gUsnteRKWMREYr
+                  rMGHzEqJGROeRjSdrcxs42lJGeSBpKrOJvsYAChFsCr8hlGLf3ZQTJbKEREu+kzVF4wOIUM7DjHT
+                  k+Bo8Gmxhlq6XLfDUN+KKjNt6NJll8pR4NlNOeC0SjIYkONmLAnDybp6t9xkOR61TNSXPddweE8w
+                  mZ3Mdxs9xI1gdsbTw7xrBJIJ9fd37bijj3gmMKsf2DO0nhbIdyK8q01QnWjGB2w5xTSrDUS3uUrO
+                  kb8Eyiu/EHO9rrCcOnCn9lxGKtvFhvpH95hqETBsrXB2v3qU1aDflHI+39P17VHwquhDMayvXLdR
+                  t7ipQmqbd0Ag76pAa2C5zRyoWGLW4ZQa0jY2WQRoA2VcUpfI4UPVmALVn/p+
+              pos: 623
+        _stats_has_moments: false
+        a: -.inf
+        b: .inf
+        badvalue: .nan
+        moment_type: 1
+        name: norm
+        numargs: 0
+        shapes: null
+        xtol: 1.0e-14
+      discrete: false
+      message: '`anderson` successfully fit the distribution to the data.'
+      params: !!python/object/new:scipy.stats._fit.FitParams
+      - !!python/object/apply:numpy.core.multiarray.scalar
+        - *id003
+        - !!binary |
+          kS3mOw==
+      - !!python/object/apply:numpy.core.multiarray.scalar
+        - *id003
+        - !!binary |
+          XCUCPw==
+      pxf: !!python/object/apply:builtins.getattr
+      - *id004
+      - pdf
+      success: true
+  state: *id005
+average dwell time: 3.027834699453552
+diff_long_nm_nm_s: 1760.983423785453
+diff_short_nm_nm_s: 817.3058343585251
+mean_step_nm_s: 118.6923223729472
+mu_x: 0.003
+mu_y: 0.003
+normality_str: 'variable dx NOT normally distributed at 10.0%
+
+  variable dy NOT normally distributed at 10.0%
+
+  '
+sigma_x: 0.085
+sigma_xy: 0.023
+sigma_y: 0.164
+time_per_1000nm_s_long_axis: 283.9322581045015
